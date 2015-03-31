@@ -1,6 +1,23 @@
-<h1><%= link_to "View All Results", all_result_admin_path %></h1><br><br>
-<h1>Search by Email</h1>
-<%= form_for :individual_result, url: individual_result_admin_path, :method => :post do |f|%>
+
+<div class="col-sm-7">
+<h2 style="width:100%; text-align:center;">List of all users</h2>
+<table border="1" style="width:100%; text-align:center;margin-bottom: 40px;">
+  <tr>
+    <th style="text-align:center;">User Name</th>
+    <th style="text-align:center;">Email</th>
+  </tr>
+  <% @users.each do |u| %>
+  <tr>
+  <% @user=u %>
+    <td><%= link_to u.user_name, individual_result_admin_path(user_id: @user, admin_id: @admin.id) %></td>
+    <td><%= u.email %></td>
+  </tr>
+  <% end %>
+</table>
+</div><br><br>
+  <div class="col-sm-5">
+<h2>Search by Email</h2>
+<%= form_for :individual_result, url: individual_result_admin_path(@admin), :method => :get do |f|%>
 <p>
   <%= label_tag :Email %><br>
   <%= f.text_field :email %>
@@ -9,3 +26,4 @@
   <%= f.submit "ok" %>
 </p>
 <% end %>
+</div>

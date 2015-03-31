@@ -1,31 +1,28 @@
- <div class="row">
-  <div class="col-sm-4 col-sm-offset-4">
-    <%= form_for @user do |f| %>
-    <div class="form-group" data-toggle ="tooltip" data-placement= "left" title="Enter Your Name">
-      <%= f.text_field :user_name,:class=>"form-control",:placeholder=>"Your Name" %>
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <%= form_for @user do |f| %>
+      <div class="form-group" data-toggle ="tooltip" data-placement= "left" title="Enter Your Name">
+        <%= f.text_field :user_name,:class=>"form-control user_name",:placeholder=>"Your Name", :id => "capitaln" %>
+      </div>
+      <div class="form-group" data-toggle ="tooltip" data-placement= "left" title="Enter Your Email">
+       <%= f.text_field :email,:class=>"form-control email",:placeholder=>"Your Email"%>
+     </div>
+     <div class="form-group" data-toggle ="tooltip" data-placement= "left" title="Enter Your Organisation">
+       <%= f.text_field :organization,:class=>"form-control organization",:placeholder=>"Organisation", :id => "capitalo" %>
+     </div>
+     <div class="form-group" data-toggle ="tooltip" data-placement= "left" title="Enter Your Designation">
+      <%= f.text_field :designation,:class=>"form-control designation",:placeholder=>"Designation", :id => "capitald" %><br>
     </div>
-    <div class="form-group" data-toggle ="tooltip" data-placement= "left" title="Enter Your Email">
-     <%= f.text_field :email,:class=>"form-control",:placeholder=>"Your Email"%>
-   </div>
-   <div class="form-group" data-toggle ="tooltip" data-placement= "left" title="Enter Your Organisation">
-     <%= f.text_field :organization,:class=>"form-control",:placeholder=>"Organisation"%>
-   </div>
-   <div class="form-group" data-toggle ="tooltip" data-placement= "left" title="Enter Your Designation">
-    <%= f.text_field :designation,:class=>"form-control",:placeholder=>"Designation"%><br>
-  </div>
-  <div class="form-group btn-margin-top">
-    <div class="col-sm-offset-2 col-sm-10">
-      <%= f.submit "submit",:id => "click_disable1",:class => "btn btn-primary btn-margin-right"%>
-      <% end %>
+    <div class="form-group btn-margin-top">
+      <div class="col-sm-offset-8 col-sm-10">
+        <%= f.submit "submit",:id => "click_disable1",:class => "btn btn-primary btn-margin-right disable_submitButtonId enable_submitButtonId"%>
+      </div>
     </div>
   </div>
   </div>
-</div>
-<div style="text-align:right">
-  <%= link_to "create question",new_question_path,:class => "btn-primary" %>
 </div>
 <div class="row" style="">
-<div id="demo" class="slider-position">
+  <div id="demo" class="slider-position">
    <a href="#" class="text-right" style="display:block" onclick="myFunction()" >
     <i class="fa fa-times-circle-o slider-close-btn" ></i>
   </a>
@@ -36,7 +33,7 @@
       <li data-slide-to="2" data-target="#carousel-example-generic" class=""></li>
       <li data-slide-to="3" data-target="#carousel-example-generic" class=""></li>
     </ol>
-    <div role="listbox" class="carousel-inner" style="height:400px;">
+    <div role="listbox" class="carousel-inner" style="height:445px;">
       <div class="item active" data-holder-rendered="true">
         <%= image_tag "slider/banner02.jpg", :alt=>"First slide"%>
       </div>
@@ -60,4 +57,24 @@
  function myFunction() {
   document.getElementById("demo").style.display = "none";
 }
+$('#capitaln').keyup(function(){
+  $(this).val($(this).val().charAt(0).toUpperCase()+ $(this).val().slice(1));
+});
+$('#capitalo').keyup(function(){
+  $(this).val($(this).val().charAt(0).toUpperCase()+ $(this).val().slice(1));
+});
+$('#capitald').keyup(function(){
+  $(this).val($(this).val().charAt(0).toUpperCase()+ $(this).val().slice(1));
+});
+$(document).ready(function(){
+  $("#click_disable1").click(function(){
+    var val1 = $('.user_name').valid();
+    var val2 = $('.email').valid();
+    var val3 = $('.organization').valid();
+    var val4 = $('.designation').valid();
+    if (val1 && val2 && val3 && val4) {
+      $("#click_disable1").addClass('disabled');
+    }
+  });
+});
 </script>
